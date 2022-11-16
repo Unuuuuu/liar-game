@@ -7,7 +7,7 @@ import clsx from "clsx";
 const Root = () => {
   return (
     <Container>
-      <div className="pt-16">
+      <div className="py-16">
         <div className="mb-8 flex flex-col items-center">
           <img src="/joker.svg" className="h-32 w-32" alt="joker" />
           <h1 className="text-4xl">Liar Game</h1>
@@ -18,7 +18,7 @@ const Root = () => {
               <Tab
                 key={value}
                 className={({ selected }) =>
-                  clsx("tab grow", selected && "tab-active")
+                  clsx("tab grow focus:outline-none", selected && "tab-active")
                 }
               >
                 {value}
