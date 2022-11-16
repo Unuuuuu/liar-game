@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import Root from "./routes/root";
+import "~/utils/firebase";
 
 const router = createBrowserRouter([
   {
