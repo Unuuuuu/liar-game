@@ -1,10 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import App from "./App";
+import Room, { loader as roomLoader } from "./routes/room";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
 import "./index.css";
-import Root from "./routes/root";
-import "~/utils/firebase";
+import "~/firebase";
+import Home from "./routes/home";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +19,16 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Root />,
+        element: <Home />,
+      },
+      {
+        path: "/rooms/:roomCode",
+        element: <Room />,
+        loader: roomLoader,
+      },
+      {
+        path: "*",
+        element: <Navigate to={"/"} replace />,
       },
     ],
   },
@@ -20,6 +36,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
